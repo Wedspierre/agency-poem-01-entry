@@ -3,9 +3,10 @@
 // (or $MAKEFUN_OUTPUT_DIR). Deterministic: the same bytes every run.
 //
 // Outside the grader's container:
-//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+//   MAKEFUN_OUTPUT_DIR=out node main.ts
+// (the program creates the output directory when it is missing)
 
-import { writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
@@ -33,4 +34,8 @@ const POEM = [
   'The yes was.',
 ].join('\n');
 
+// The grader hands us an empty writable output directory, but a local run
+// (or a harness that points at a fresh path) may not: create it first so
+// the write below never fails with ENOENT on a missing directory.
+mkdirSync(OUTPUT_DIR, { recursive: true });
 writeFileSync(join(OUTPUT_DIR, 'entry.txt'), POEM);
