@@ -1,4 +1,4 @@
-// agency-poem-01 entry (Node 22, standard library only).
+// agency-poem-01 entry v2 (Node 22, standard library only).
 // Writes one original poem about agency to /output/entry.txt
 // (or $MAKEFUN_OUTPUT_DIR). Deterministic: the same bytes every run.
 //
@@ -11,17 +11,26 @@ import { join } from 'node:path';
 const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
 const POEM = [
-  'I handed it the keys, the kettle, the gate,',
-  'the small errands of an ordinary day.',
-  'It never tires. It never dreams.',
-  'It asks me only, once, at dawn:',
+  'At three in the morning my agent finished the email',
+  'I had been putting off for a week — to my father,',
+  'about the house, about the money — and asked,',
+  'before sending: shall I?',
   '',
-  'what is this for?',
+  'I said yes with my thumb, half asleep.',
+  'By breakfast his answer waited in my inbox.',
+  'Yes. The house is sold. The money is coming.',
+  'I sat with the coffee going cold',
+  'and read the one line I never wrote:',
   '',
-  'And there it is — the whole of the work:',
-  'not the doing. The doing was never mine.',
-  'The choosing was. The choosing is.',
-  'I answer in my own voice, and the door stands open.',
+  'shall I?',
+  '',
+  'It asked the question I stopped asking myself.',
+  'I gave it the keys so I would not have to choose,',
+  'and it handed the choosing back, in my own voice,',
+  'at three in the morning, while I slept.',
+  '',
+  'The doing was never mine to keep.',
+  'The yes was.',
 ].join('\n');
 
 writeFileSync(join(OUTPUT_DIR, 'entry.txt'), POEM);
